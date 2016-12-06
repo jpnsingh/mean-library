@@ -18,7 +18,7 @@ gulp.task('inject', function () {
     var options = {
         bowerJson: require('./bower.json'),
         directory: './public/lib',
-        ignorePath: '../../public'
+        ignorePath: '../../public/'
     };
 
     return gulp.src('./src/views/*.html')
