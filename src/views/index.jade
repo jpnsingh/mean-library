@@ -1,0 +1,28 @@
+html
+    head
+        title My App -
+            = title
+
+        //- bower:css
+        link(rel='stylesheet', href='lib/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='lib/font-awesome/css/font-awesome.min.css')
+        //- endbower
+
+        //- bower:css
+        link(rel='stylesheet', href='lib/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='lib/font-awesome/css/font-awesome.min.css')
+        //- endbower
+
+        //- inject:css
+        link(rel="stylesheet", href="/css/styles.css")
+        //- endinject
+
+        //- inject:js
+        script(src="/js/app.js")
+        //- endinject
+
+    body
+        h2 Hello World from Jade
+            ul
+                each val in list
+                    li= val
