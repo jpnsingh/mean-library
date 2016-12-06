@@ -41,13 +41,14 @@
         });
     });
 
-    app.get('/books', function (req, res) {
-        res.send('Hello Books!');
-    });
+    app.set('view engine', 'ejs');
+    var booksRouter = require('./src/routes/bookRoutes');
 
-    app.get('/authors', function (req, res) {
-        res.send('Hello Authors!');
-    });
+    app.use('/books', booksRouter);
+
+    var authorRouter = require('./src/routes/authorRoutes');
+
+    app.use('/authors', authorRouter);
 
     app.listen(port, function (error) {
         console.log('Server running on port: ' + port);
