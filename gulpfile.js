@@ -28,7 +28,7 @@ gulp.task('inject', function () {
         };
 
 
-    return gulp.src('./src/views/*.jade')
+    return gulp.src('./src/views/*.ejs')
         .pipe(wiredep(options))
         .pipe(gulpInject(gulpInjectSrc, gulpInjectOptions))
         .pipe(gulp.dest('./src/views'));

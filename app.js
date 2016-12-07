@@ -42,12 +42,14 @@
     });
 
     app.set('view engine', 'ejs');
-    var booksRouter = require('./src/routes/bookRoutes');
 
-    app.use('/books', booksRouter);
+    var bookRouter = require('./src/routes/bookRoutes');
+    app.use('/books', bookRouter);
+
+    var adminRouter = require('./src/routes/adminRoutes')();
+    app.use('/admin', adminRouter);
 
     var authorRouter = require('./src/routes/authorRoutes');
-
     app.use('/authors', authorRouter);
 
     app.listen(port, function (error) {

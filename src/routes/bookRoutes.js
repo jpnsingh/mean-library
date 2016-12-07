@@ -17,7 +17,7 @@
     booksRouter
         .route('/')
         .get(function (req, res) {
-            res.render('books', {
+            res.render('bookListView', {
                 title: 'Books',
                 nav: [
                     {title: 'Books', link: '/books'},
@@ -28,9 +28,17 @@
         });
 
     booksRouter
-        .route('/single')
+        .route('/:id')
         .get(function (req, res) {
-            res.send('Hello Book 1!');
+            var id = req.params.id;
+            res.render('bookView', {
+                title: 'Books',
+                nav: [
+                    {title: 'Books', link: '/books'},
+                    {title: 'Authors', link: '/authors'}
+                ],
+                book: books[id]
+            });
         });
 
     module.exports = booksRouter;
