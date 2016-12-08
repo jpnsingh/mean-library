@@ -4,6 +4,13 @@
     var authorRouter = require('express').Router();
 
     module.exports = function () {
+        authorRouter.use(function (request, response, next) {
+            if (!request.user) {
+                response.redirect('/');
+            }
+            next();
+        });
+
         authorRouter
             .route('/')
             .get(function (req, res) {
