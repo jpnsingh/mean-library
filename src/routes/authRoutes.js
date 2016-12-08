@@ -35,6 +35,12 @@
 
         authRouter
             .route('/profile')
+            .all(function (request, response, next) {
+                if (!request.user) {
+                    response.redirect('/');
+                }
+                next();
+            })
             .get(function (request, response) {
                 console.log(request.user);
                 response.json(request.user);

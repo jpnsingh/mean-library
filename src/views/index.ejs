@@ -43,6 +43,13 @@
         </div>
         <nav class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
+                    <% for (var i = 0; i < nav.length; i++) { %>
+                    <li>
+                        <a href="<%= nav[i].link; %>"><%= nav[i].text; %></a>
+                    </li>
+                    <% } %>
+                </ul>
             </ul>
             <ul class="nav navbar-right navbar-nav">
                 <li class="dropdown">
@@ -65,7 +72,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h1>Login
+                <h1>Welcome Guest !!
                     <p class="lead"></p>
                 </h1>
             </div>

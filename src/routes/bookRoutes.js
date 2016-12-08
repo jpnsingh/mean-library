@@ -6,6 +6,13 @@
         ObjectID = require('mongodb').ObjectID;
 
     module.exports = function () {
+        bookRouter.use(function (request, response, next) {
+            if (!request.user) {
+                response.redirect('/');
+            }
+            next();
+        });
+
         bookRouter
             .route('/')
             .get(function (req, res) {

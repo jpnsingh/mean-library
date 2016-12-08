@@ -24,6 +24,13 @@
     ];
 
     module.exports = function () {
+        adminRouter.use(function (request, response, next) {
+            if (!request.user) {
+                response.redirect('/');
+            }
+            next();
+        });
+
         adminRouter
             .route('/addBooks')
             .get(function (request, response) {
