@@ -2,49 +2,15 @@
     'use strict';
 
     var adminRouter = require('express').Router(),
-        mongodb = require('mongodb').MongoClient;
-
-    var books = [
-        {
-            title: 'Design Patterns',
-            author: 'GOF'
-        },
-        {
-            title: 'Design Principles',
-            author: 'Head First'
-        },
-        {
-            title: 'Thinking in Java',
-            author: 'Bruce Eckel'
-        },
-        {
-            title: 'Thinking in C++',
-            author: 'Bruce Eckel'
-        }
-    ];
+        adminController = require('../controllers/adminController')(null, {});
 
     module.exports = function () {
-        adminRouter.use(function (request, response, next) {
-            if (!request.user) {
-                response.redirect('/');
-            }
-            next();
-        });
+        adminRouter
+            .use(adminController.middleware);
 
         adminRouter
             .route('/addBooks')
-            .get(function (request, response) {
-                var url = 'mongodb://localhost:27017/libraryApp';
-
-                mongodb.connect(url, function (error, db) {
-                    var collection = db.collection('books');
-
-                    collection.insertMany(books, function (error, results) {
-                        response.send(results);
-                        db.close();
-                    });
-                });
-            });
+            .get(adminController.addBooks);
 
         return adminRouter;
     };
