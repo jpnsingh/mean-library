@@ -2,55 +2,72 @@
     'use strict';
 
     var express = require('express'),
-        app = express(),
-        port = 5000;
+        bodyParser = require('body-parser'),
+        cookieParser = require('cookie-parser'),
+        passport = require('passport'),
+        session = require('express-session'),
+        authRouter = require('./src/routes/authRoutes'),
+        adminRouter = require('./src/routes/adminRoutes'),
+        bookRouter = require('./src/routes/bookRoutes'),
+        authorRouter = require('./src/routes/authorRoutes'),
+        port = 5000,
+        app = express();
+
+    var nav = [
+        {link: '/books', text: 'Books'},
+        {link: '/authors', text: 'Authors'}
+    ];
 
     app.use(express.static('public'));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
+    app.use(cookieParser());
+    app.use(session({secret: 'library'}));
+
+    require('./src/config/passport')(app);
 
     app.set('views', './src/views');
-
-    // app.use(express.static('src/views'));
-    app.get('/', function (req, res) {
-        res.send('Hello World!');
-    });
-
-    var handlebars = require('express-handlebars');
-    app.engine('.hbs', handlebars({extreme: '.hbs'}));
-
-    app.get('/jade', function (req, res) {
-        app.set('view engine', '.jade');
-
-        res.render('index', {title: ' Jade', list: ['a', 'b']});
-    });
-
-    app.get('/hbs', function (req, res) {
-        app.set('view engine', '.hbs');
-
-        res.render('index', {title: 'HBS', list: ['a', 'b', 'c']});
-    });
-
-    app.get('/ejs', function (req, res) {
-        app.set('view engine', 'ejs');
-
-        res.render('index', {
-            title: 'EJS',
-            nav: [
-                {title: 'Books', link: '/books'},
-                {title: 'Authors', link: '/authors'}
-            ]
-        });
-    });
-
     app.set('view engine', 'ejs');
 
-    var bookRouter = require('./src/routes/bookRoutes');
-    app.use('/books', bookRouter);
+    // app.use(express.static('./src/views'));
+    // var handlebars = require('express-handlebars');
+    // app.engine('.hbs', handlebars({extreme: '.hbs'}));
+    //
+    // app.get('/jade', function (request, response) {
+    //     app.set('view engine', '.jade');
+    //
+    //     response.render('index', {title: ' Jade', list: ['a', 'b']});
+    // });
+    //
+    // app.get('/hbs', function (request, response) {
+    //     app.set('view engine', '.hbs');
+    //
+    //     response.render('index', {title: 'HBS', list: ['a', 'b', 'c']});
+    // });
+    //
+    // app.get('/ejs', function (request, response) {
+    //     app.set('view engine', 'ejs');
+    //
+    //     response.render('index', {
+    //         title: 'EJS',
+    //         nav: [
+    //             {title: 'Books', link: '/books'},
+    //             {title: 'Authors', link: '/authors'}
+    //         ]
+    //     });
+    // });
 
-    var adminRouter = require('./src/routes/adminRoutes')();
-    app.use('/admin', adminRouter);
+    app.use('/auth', authRouter());
+    app.use('/admin', adminRouter());
+    app.use('/authors', authorRouter());
+    app.use('/books', bookRouter());
 
-    var authorRouter = require('./src/routes/authorRoutes');
-    app.use('/authors', authorRouter);
+    app.get('/', function (request, response) {
+        response.render('index', {
+            title: 'Hello from render!',
+            nav: nav
+        });
+    });
 
     app.listen(port, function (error) {
         console.log('Server running on port: ' + port);
