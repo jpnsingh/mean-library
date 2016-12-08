@@ -22,7 +22,8 @@
                         title: 'Books',
                         nav: [
                             {title: 'Books', link: '/books'},
-                            {title: 'Authors', link: '/authors'}
+                            {title: 'Authors', link: '/authors'},
+                            {title: 'Admin', link: '/admin'}
                         ],
                         books: results
                     });

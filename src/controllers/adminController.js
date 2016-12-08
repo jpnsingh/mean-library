@@ -30,6 +30,10 @@
             next();
         };
 
+        var getIndex = function (request, response) {
+            response.render('adminView');
+        };
+
         var addBooks = function (request, response) {
             var url = 'mongodb://localhost:27017/libraryApp';
 
@@ -45,6 +49,7 @@
 
         return {
             middleware: middleware,
+            getIndex: getIndex,
             addBooks: addBooks
         };
     };
