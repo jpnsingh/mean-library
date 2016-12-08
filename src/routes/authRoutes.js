@@ -2,50 +2,21 @@
     'use strict';
 
     var authRouter = require('express').Router(),
-        mongodb = require('mongodb').MongoClient,
-        passport = require('passport');
+        authController = require('../controllers/authController')(null, {});
 
     module.exports = function () {
         authRouter
             .route('/signUp')
-            .post(function (request, response) {
-                var user = request.body;
-                console.log(user);
-
-                var url = 'mongodb://localhost:27017/libraryApp';
-
-                mongodb.connect(url, function (error, db) {
-                    var usersCollection = db.collection('users');
-
-                    usersCollection.insert(user, function (error, results) {
-                        request.login(results.ops[0], function () {
-                            response.redirect('/auth/profile');
-                        });
-                    });
-                });
-            });
+            .post(authController.signUp);
 
         authRouter
             .route('/signIn')
-            .post(passport.authenticate('local', {
-                failureRedirect: '/'
-            }), function (request, response) {
-                response.redirect('/auth/profile');
-            });
+            .post(authController.authenticate, authController.signIn);
 
         authRouter
             .route('/profile')
-            .all(function (request, response, next) {
-                if (!request.user) {
-                    response.redirect('/');
-                }
-                next();
-            })
-            .get(function (request, response) {
-                console.log(request.user);
-                response.json(request.user);
-                // response.render('userProfileView');
-            });
+            .all(authController.middleware)
+            .get(authController.profile);
 
         return authRouter;
     };
