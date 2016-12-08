@@ -23,7 +23,7 @@
         }
     ];
 
-    module.exports = function (nav) {
+    module.exports = function () {
         adminRouter
             .route('/addBooks')
             .get(function (request, response) {
