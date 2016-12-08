@@ -15,7 +15,8 @@
 
     var nav = [
         {link: '/books', text: 'Books'},
-        {link: '/authors', text: 'Authors'}
+        {link: '/authors', text: 'Authors'},
+        {link: '/admin', text: 'Admin'}
     ];
 
     app.use(express.static('public'));

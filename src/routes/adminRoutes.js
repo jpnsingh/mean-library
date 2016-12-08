@@ -9,6 +9,10 @@
             .use(adminController.middleware);
 
         adminRouter
+            .route('/')
+            .get(adminController.getIndex);
+
+        adminRouter
             .route('/addBooks')
             .get(adminController.addBooks);
 

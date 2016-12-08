@@ -53,8 +53,8 @@
             </ul>
             <ul class="nav navbar-right navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                                class="glyphicon glyphicon-search"></i></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-search"></i></a>
                     <ul class="dropdown-menu" style="padding:12px;">
                         <form class="form-inline">
                             <button type="submit" class="btn btn-default pull-right"><i
@@ -94,127 +94,120 @@
             </div>
         </div>
     </div>
-
 </div>
-
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-body">
-
                     <div class="row">
-                        <br>
-                        <div class="col-md-6 col-sm-3">
-                            Sign In
-                            <form name="signUpForm" action="/auth/signIn" method="post">
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="text"
-                                               id="username"
-                                               name="username"
-                                               class="form-control"
-                                               placeholder="User Name"
-                                               autofocus>
-                                    </div>
-                                </div>
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#signIn" aria-controls="signIn" role="tab" data-toggle="tab">Sign In</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#signUp" aria-controls="signUp" role="tab" data-toggle="tab">Sign Up</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <br>
+                                <div id="signIn" role="tabpanel" class="tab-pane active">
+                                    <div class="col-xs-12">
+                                        <form name="signUpForm" action="/auth/signIn" method="post">
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="text"
+                                                           id="username"
+                                                           name="username"
+                                                           class="form-control"
+                                                           placeholder="User Name"
+                                                           autofocus>
+                                                </div>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="password"
-                                               id="password"
-                                               name="password"
-                                               class="form-control"
-                                               placeholder="Password">
-                                    </div>
-                                </div>
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="password"
+                                                           id="password"
+                                                           name="password"
+                                                           class="form-control"
+                                                           placeholder="Password">
+                                                </div>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="submit"
-                                               class="btn btn-primary form-control"
-                                               value="Sign In">
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="submit"
+                                                           class="btn btn-primary form-control"
+                                                           value="Sign In">
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="col-md-6 col-sm-9">
-                            Sign Up
-                            <form name="signUpForm" action="/auth/signUp" method="post">
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="text"
-                                               id="username"
-                                               name="username"
-                                               class="form-control"
-                                               placeholder="User Name"
-                                               autofocus>
-                                    </div>
-                                </div>
+                                <div id="signUp" role="tabpanel" class="tab-pane">
+                                    <div class="col-xs-12">
+                                        <form name="signUpForm" action="/auth/signUp" method="post">
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="text"
+                                                           id="username"
+                                                           name="username"
+                                                           class="form-control"
+                                                           placeholder="User Name">
+                                                </div>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="password"
-                                               id="password"
-                                               name="password"
-                                               class="form-control"
-                                               placeholder="Password">
-                                    </div>
-                                </div>
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="password"
+                                                           id="password"
+                                                           name="password"
+                                                           class="form-control"
+                                                           placeholder="Password">
+                                                </div>
+                                            </div>
 
-                                <div class="row">
-                                    <div class="form-group col-xs-4">
-                                        <input type="submit"
-                                               class="btn btn-primary form-control"
-                                               value="Sign Up">
+                                            <div class="row">
+                                                <div class="form-group col-xs-4">
+                                                    <input type="submit"
+                                                           class="btn btn-primary form-control"
+                                                           value="Sign Up">
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <hr>
 
 <div class="container" id="footer">
     <div class="row">
         <div class="col col-sm-12">
-
             <h1>Follow Us</h1>
             <div class="btn-group">
                 <a class="btn btn-twitter btn-lg" href="#"><i class="icon-twitter icon-large"></i> Twitter</a>
                 <a class="btn btn-facebook btn-lg" href="#"><i class="icon-facebook icon-large"></i> Facebook</a>
                 <a class="btn btn-google-plus btn-lg" href="#"><i class="icon-google-plus icon-large"></i> Google+</a>
             </div>
-
         </div>
     </div>
 </div>
 
-<hr>
-
-<hr>
-
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <ul class="list-inline">
-                    <li><i class="icon-facebook icon-2x"></i></li>
-                    <li><i class="icon-twitter icon-2x"></i></li>
-                    <li><i class="icon-google-plus icon-2x"></i></li>
-                    <li><i class="icon-pinterest icon-2x"></i></li>
-                </ul>
-
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <p class="pull-right">@Copyright <i class="icon-heart-empty"></i> at <a href="#">jprs</a>
                 </p>
             </div>

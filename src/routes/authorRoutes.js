@@ -1,27 +1,20 @@
 (function () {
     'use strict';
 
-    var authorRouter = require('express').Router();
+    var authorRouter = require('express').Router(),
+        authorController = require('../controllers/authorController')(null, {});
 
     module.exports = function () {
-        authorRouter.use(function (request, response, next) {
-            if (!request.user) {
-                response.redirect('/');
-            }
-            next();
-        });
+        authorRouter
+            .use(authorController.middleware);
 
         authorRouter
             .route('/')
-            .get(function (req, res) {
-                res.send('Hello Authors!');
-            });
+            .get(authorController.getIndex);
 
         authorRouter
-            .route('/single')
-            .get(function (req, res) {
-                res.send('Hello Author 1!');
-            });
+            .route('/author/:id')
+            .get(authorController.getAuthor);
 
         return authorRouter;
     };

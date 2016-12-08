@@ -4,7 +4,7 @@
     var bookRouter = require('express').Router(),
         bookController = require('../controllers/bookController')(null, {});
 
-    module.exports = function () {
+    module.exports = function (nav) {
         bookRouter.use(bookController.middleware);
 
         bookRouter
