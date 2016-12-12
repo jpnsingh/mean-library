@@ -34,8 +34,9 @@
         var middleware = function (request, response, next) {
             if (!request.user) {
                 response.redirect('/');
+            } else {
+                next();
             }
-            next();
         };
 
         var profile = function (request, response) {
